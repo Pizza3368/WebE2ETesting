@@ -8,15 +8,21 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
-        node-version: '16'
+        node-version: '20'
 
     - name: Install dependencies
       run: npm install
 
+    - name: Install Cypress globally
+      run: npm install -g cypress
+
+    - name: Make Cypress executable
+      run: chmod +x ./node_modules/.bin/cypress
+
     - name: Run Cypress tests
-      run: npx cypress run --env url=https://the-url-of-your-website.com
+      run: npx cypress run --headless --browser chrome --env url=https://the-url-of-your-website.com
