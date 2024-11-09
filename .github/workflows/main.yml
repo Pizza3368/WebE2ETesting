@@ -15,8 +15,8 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run Cypress tests
-      run: npx cypress run --headless --browser chrome --env url=https://the-url-of-your-website.com
+    - name: Cypress run
+      uses: cypress-io/github-action@v5
+      with:
+        browser: chrome
+        env: url=https://the-url-of-your-website.com
